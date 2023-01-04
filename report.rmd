@@ -1,0 +1,48 @@
+---
+title: "Patients Profile"
+output: pdf_document
+params:
+  pt_id: NA
+  ex_p: NA
+  
+  
+---
+
+
+```{r setup,include=FALSE}
+library(knitr)
+library(shiny)
+knitr::opts_chunk$set(echo = F)
+knitr::opts_chunk$set(warning  = F)
+```
+
+
+```{r, comment= ""}
+cat(
+  as.character(
+    df_ptinfo()[df_ptinfo()$USUBJID == params$pt_id, 'title']
+      )
+  )
+
+```
+
+
+```{r, comment="", style="background: pink;"}
+#print(df_ptinfo()[df_ptinfo()$USUBJID == input$pt_id, 'title'])
+if(! params$pt_id %in% unique(ex()$USUBJID)){
+      #! Can change the apperance of validate message?
+      cat('This patient didn\'t take any Selinexor.' )
+    } else {
+      make_exposure_p(ex(), ex_rgm(), params$pt_id) + xlim(0, lim_x())
+    }
+```
+
+```{r, echo=FALSE, warning=FALSE}
+make_AE_p(ae(), ae_oneday(), params$pt_id) + xlim(0, lim_x())
+
+```
+
+
+```{r, echo = FALSE, warning=FALSE}
+make_lb_p(lb(), params$pt_id) + xlim(0, lim_x())
+```
