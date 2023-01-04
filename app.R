@@ -18,7 +18,7 @@ library(ggpubr)
 library(haven)
 library(DT)
 library(writexl)
-setwd("~/Work/Project/Patients Profile/Code")
+#setwd("~/Work/Project/Patients Profile/Code")
 
 
 # df_suppfa <- read_sas(paste0(path,'/SDTM/suppfa.sas7bdat'))
